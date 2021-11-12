@@ -1,10 +1,8 @@
-import DotEnv from 'dotenv'
 import { createHttpTerminator } from 'http-terminator'
 
 import App from './app'
 import Logger from './util/logger'
-
-DotEnv.config()
+import Config from './config'
 
 process.on('unhandledRejection', (err) => {
   throw err;
@@ -16,10 +14,9 @@ Logger.fatal({
   lastname: 'useful'
 })
 
-const server = App.listen(process.env.PORT || 3000, () => {
+const server = App.listen(Config.port, () => {
   Logger.info(
-    `started server on :${process.env.PORT || 3000} in ${process.env.NODE_ENV
-    } mode`
+    `started server on :${Config.port} in ${Config.env} mode`
   );
 });
 
