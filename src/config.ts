@@ -11,6 +11,8 @@ const schema = Joi.object()
       .valid("development", "test", "production")
       .default("development"),
     PORT: Joi.number().port().default(3000),
+    STRIBE_PUBKEY: Joi.string().regex(/^pk_test_[a-zA-Z0-9]+$/).required(),
+    STRIPE_SECRET: Joi.string().regex(/^sk_test_[a-zA-Z0-9]+$/).required(),
   })
   .unknown();
 
@@ -26,4 +28,8 @@ const env = validateConfig(schema)
 export default {
   env: env.NODE_ENV as "development" | "test" | "production",
   port: env.PORT as number,
+  stripe: {
+    publisherKey: env.STRIBE_PUBKEY as string,
+    secret: env.STRIPE_SECRET as string,
+  }
 }

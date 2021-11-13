@@ -8,12 +8,6 @@ process.on('unhandledRejection', (err) => {
   throw err;
 });
 
-Logger.debug('blaaaa')
-Logger.fatal({
-  NAMEE: 'maybeeee',
-  lastname: 'useful'
-})
-
 const server = App.listen(Config.port, () => {
   Logger.info(
     `started server on :${Config.port} in ${Config.env} mode`
