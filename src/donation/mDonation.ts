@@ -32,5 +32,6 @@ export default {
     Logger.info(final.data)
     Logger.info(final.data.id)
     Logger.info(final.data.hosted_invoice_url)
+    return final.data.hosted_invoice_url
   }
 }
