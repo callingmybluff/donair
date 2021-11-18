@@ -33,6 +33,8 @@ dependencies:
   url_launcher: ^6.0.12
   # For communications with the server
   http: ^0.13.4
+  # Everything immutable
+  built_value: ^8.1.3
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -41,6 +43,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  # 2 Dependencies for built_value
+  build_runner: ^2.1.5
+  built_value_generator: ^8.1.3
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

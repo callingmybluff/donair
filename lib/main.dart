@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:donair/donation_m.dart';
+import 'package:donair/model/donation/donation_m.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,7 +37,7 @@ class _Donations extends State<Donations> {
   void _generatePayment(int amount) {
     _makeTheDonation(amount, donationsList.length);
     setState(() {
-      donationsList.add(DonationM(amount));
+      donationsList.add(DonationM.viaAmount(amount));
     });
   }
 
@@ -52,8 +52,8 @@ class _Donations extends State<Donations> {
       },
     );
     setState(() {
-      donationsList[donationIndex].generated = true;
-      donationsList[donationIndex].link = respose.body;
+      donationsList[donationIndex] =
+          DonationM.addLink(donationsList[donationIndex], respose.body);
     });
   }
 
@@ -76,8 +76,8 @@ class _Donations extends State<Donations> {
                 itemBuilder: (BuildContext context, int index) {
                   DonationM donation = donationsList[index];
                   String text = '';
-                  if (donation.generated) {
-                    text = donation.link;
+                  if (donation.isGenerated) {
+                    text = donation.link as String;
                   }
                   return Row(
                     children: [
@@ -86,7 +86,7 @@ class _Donations extends State<Donations> {
                       ),
                       Padding(
                         padding: const EdgeInsets.all(4),
-                        child: donation.generated
+                        child: donation.isGenerated
                             ? ElevatedButton(
                                 child: const Text('Pay'),
                                 onPressed: () {
