@@ -11,7 +11,7 @@ const schema = Joi.object()
       .valid("development", "test", "production")
       .default("development"),
     PORT: Joi.number().port().default(3000),
-    STRIBE_PUBKEY: Joi.string().regex(/^pk_test_[a-zA-Z0-9]+$/).required(),
+    STRIPE_PUBKEY: Joi.string().regex(/^pk_test_[a-zA-Z0-9]+$/).required(),
     STRIPE_SECRET: Joi.string().regex(/^sk_test_[a-zA-Z0-9]+$/).required(),
   })
   .unknown();
