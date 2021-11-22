@@ -1,13 +1,10 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:http/http.dart' as http;
 
-import 'package:donair/model/donation/donation_m.dart';
+import 'package:donair/sl.dart';
+import 'package:donair/home.dart';
 
 void main() {
+  ServiceLocator.setup();
   runApp(const MyApp());
 }
 
@@ -16,130 +13,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Donair',
-      home: Donations(),
-    );
-  }
-}
-
-class Donations extends StatefulWidget {
-  const Donations({Key? key}) : super(key: key);
-
-  @override
-  State<Donations> createState() => _Donations();
-}
-
-class _Donations extends State<Donations> {
-  _Donations() : donationsList = <DonationM>[];
-  final List<DonationM> donationsList;
-
-  void _generatePayment(int amount) {
-    _makeTheDonation(amount, donationsList.length);
-    setState(() {
-      donationsList.add(DonationM.viaAmount(amount));
-    });
-  }
-
-  _makeTheDonation(int amount, int donationIndex) async {
-    final respose = await http.post(
-      Uri.parse('http://10.0.2.2:5000/api/donation'),
-      body: jsonEncode(<String, String>{
-        'amount': (amount * 100).toString(),
-      }),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-    );
-    setState(() {
-      donationsList[donationIndex] =
-          DonationM.addLink(donationsList[donationIndex], respose.body);
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Your Donations'),
-      ),
-      body: Center(
-        child: donationsList.isEmpty
-            ? const Center(
-                child: Text(
-                  'Empty, so far',
-                  style: TextStyle(
-                      fontStyle: FontStyle.italic, color: Colors.grey),
-                ),
-              )
-            : ListView.builder(
-                itemBuilder: (BuildContext context, int index) {
-                  DonationM donation = donationsList[index];
-                  String text = '';
-                  if (donation.isGenerated) {
-                    text = donation.link as String;
-                  }
-                  return Row(
-                    children: [
-                      Expanded(
-                        child: Text(donation.amount.toString()),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(4),
-                        child: donation.isGenerated
-                            ? ElevatedButton(
-                                child: const Text('Pay'),
-                                onPressed: () {
-                                  if (donation.link != '') launch(text);
-                                },
-                              )
-                            : const CircularProgressIndicator(),
-                      ),
-                    ],
-                  );
-                },
-                itemCount: donationsList.length,
-              ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          TextEditingController amountController = TextEditingController();
-          showDialog(
-            context: context,
-            builder: (_) {
-              return AlertDialog(
-                title: const Text('A new donation'),
-                content: TextFormField(
-                  controller: amountController,
-                  inputFormatters: [
-                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                  ],
-                  decoration: const InputDecoration(
-                    hintText: 'Amount',
-                  ),
-                ),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      if (amountController.text.isNotEmpty) {
-                        _generatePayment(int.parse(amountController.text));
-                      }
-                      Navigator.pop(context);
-                    },
-                    child: const Text('Add'),
-                  ),
-                  TextButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: const Text('Cancel'),
-                  ),
-                ],
-              );
-            },
-          );
-        },
-        tooltip: 'Donation',
-        child: const Text('Donate'),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      home: Home(),
     );
   }
 }

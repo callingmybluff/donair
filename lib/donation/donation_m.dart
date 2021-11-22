@@ -10,35 +10,12 @@ abstract class DonationM implements Built<DonationM, DonationMBuilder> {
 
   DonationM._();
   factory DonationM([void Function(DonationMBuilder) updates]) = _$DonationM;
+  static void _initializeBuilder(DonationMBuilder builder) =>
+      builder..link = null;
 
-  factory DonationM.viaAmount(int amount) =>
-      DonationM((b) => b..amount = amount);
+  factory DonationM.viaAmount(int amount) => DonationM((b) => b
+    ..amount = amount
+    ..link = null);
   factory DonationM.addLink(DonationM donation, String link) =>
       donation.rebuild((b) => b..link = link);
 }
-
-/*
-class DonationM {
-  final int amount;
-  String link;
-  bool paid;
-  bool generated;
-
-  DonationM(
-    this.amount, {
-    this.paid = false,
-    this.generated = false,
-    this.link = '',
-  });
-
-  markPaid() {
-    paid = true;
-  }
-
-  markGenerated(String paymentLink) {
-    link = paymentLink;
-    generated = true;
-  }
-}
-
-*/
