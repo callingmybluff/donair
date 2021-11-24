@@ -4,5 +4,5 @@ content-type: application/json
 Authorization: 783deb90-896c-43f8-ad12-89ee7f5d8e97
 
 {
-    "amount": "5"
+    "amount": "500"
 }
