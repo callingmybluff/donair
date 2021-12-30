@@ -2,7 +2,7 @@ import express from 'express'
 import Pino from 'pino-http'
 
 import Logger from './util/logger'
-import Donation from './donation/cDonation'
+import Donation from './util/router'
 import Auth from './util/auth'
 
 const app = express();
