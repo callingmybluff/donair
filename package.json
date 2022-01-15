@@ -32,10 +32,11 @@
     "express": "^4.17.1",
     "http-terminator": "^3.0.3",
     "joi": "^17.4.2",
-    "mysql": "^2.18.1",
+    "mariadb": "^2.5.5",
     "pino": "^7.2.0",
     "pino-http": "^6.0.0",
     "pino-pretty": "^7.2.0",
-    "qs": "^6.10.1"
+    "qs": "^6.10.1",
+    "sequelize": "^6.12.4"
   }
 }

@@ -19,6 +19,7 @@ const schema = Joi.object()
     DB_USERNAME: Joi.string().required(),
     DB_PASSWORD: Joi.string().required(),
     DB_HOST: Joi.string().required(),
+    DB_DIALECT: Joi.string().required(),
   })
   .unknown();
 
@@ -45,5 +46,6 @@ export default {
     port: env.DB_PORT,
     username: env.DB_USERNAME,
     password: env.DB_PASSWORD,
+    dialect: env.DB_DIALECT,
   }
 }

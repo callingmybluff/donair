@@ -4,7 +4,7 @@ import { Server } from 'http'
 import App from './app'
 import Logger from './util/logger'
 import Config from './config'
-import DB from './db/model'
+import DB from './models/db'
 
 process.on('unhandledRejection', (err) => {
   throw err;
@@ -24,7 +24,7 @@ async function appStart(): Promise<Server> {
 
 async function appInitialize() {
   try {
-    // await DB.connect()
+    await DB.connect()
   }
   catch(e) {
     Logger.debug(e)

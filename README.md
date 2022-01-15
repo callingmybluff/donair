@@ -6,3 +6,9 @@ Authorization: 783deb90-896c-43f8-ad12-89ee7f5d8e97
 {
     "amount": "500"
 }
+
+
+
+
+# To start mysql
+sudo docker run -it --rm --name db --env MARIADB_USER=ismaeel --env MARIADB_PASSWORD=123456 --env MARIADB_ROOT_PASSWORD=124356 --env MARIADB_DATABASE=backend -p 3306:3306 mariadb:10.7.1
