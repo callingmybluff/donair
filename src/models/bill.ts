@@ -41,18 +41,18 @@ Bill.init(
       allowNull: false,
     },
     percentage: {
-      type: DataTypes.DECIMAL(2, 2),
+      type: DataTypes.DECIMAL(4, 2),
       allowNull: false,
     },
     amount: {
-      type: DataTypes.DECIMAL(4, 8),
+      type: DataTypes.DECIMAL(12, 4),
       allowNull: false,
     },
   },
   {
     sequelize: DB.getConnection(),
     tableName: 'bill',
-  }
+  },
 )
 
 export default Bill

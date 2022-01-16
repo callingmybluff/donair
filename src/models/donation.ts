@@ -29,12 +29,6 @@ class Donation extends Model<DonationAtt, DonationCreationAtt> implements Donati
   }
 }
 
-Donation.hasMany(Bill, {
-  sourceKey: 'id',
-  foreignKey: 'donationID',
-  as: 'bills',
-})
-
 Donation.init(
   {
     id: {
@@ -51,7 +45,13 @@ Donation.init(
   {
     sequelize: DB.getConnection(),
     tableName: 'donation',
-  }
+  },
 )
+
+Donation.hasMany(Bill, {
+  sourceKey: 'id',
+  foreignKey: 'donationID',
+  as: 'bills',
+})
 
 export default Donation

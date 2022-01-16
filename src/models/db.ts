@@ -3,8 +3,6 @@ import { Sequelize } from 'sequelize'
 import config from '../config'
 import Logger from '../util/logger';
 
-console.log(config.db)
-
 const connection = new Sequelize(config.db.name, config.db.username, config.db.password, {
   host: config.db.host,
   port: config.db.port,
@@ -17,6 +15,11 @@ export default {
     return connection
   },
   connect: async function () {
+
+    // Save DB. `force: false` prevent sequelize from dropping old tables
+    await connection.sync({
+      force: false,
+    })
     return connection.authenticate()
   },
   endConnection: async function () {
