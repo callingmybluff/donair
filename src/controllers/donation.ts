@@ -25,31 +25,29 @@ const finalSchema = Joi.object()
     }).required()
   }).required()
 
-async function generatePayment (amount: number) {
+interface AppSplit {
+  app: string
+  percentage: number
+}
+interface DonationData {
+  amount: number
+  apps: AppSplit[]
+}
+
+async function generatePayment ({amount, apps}: DonationData) {
   const donation = Donation.create({
     amount: amount,
   })
-  Bill.bulkCreate([
-    {
-      donationID: (await donation).id,
-      app: 'bla.blo.ble',
-      percentage: 11.45,
-      amount: amount * 11.45 / 100,
-    },
-    {
-      donationID: (await donation).id,
-      app: 'bla2.blo2.ble2',
-      percentage: 70,
-      amount: amount * 70 / 100,
-    },
-    {
-      donationID: (await donation).id,
-      app: 'bla3.blo3.ble3',
-      percentage: 18.55,
-      amount: amount * 11.45 / 100,
-    },
-  ])
-  
+  const donationID = (await donation).id
+  Bill.bulkCreate(apps.map(split => {
+    return {
+      donationID: donationID,
+      app: split.app,
+      percentage: split.percentage,
+      amount: amount * split.percentage / 100,
+    }
+  }))
+
   Logger.debug(`Generating payment, step 1 of 4: Getting customer`)
 
   let customer
