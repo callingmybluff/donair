@@ -1,0 +1,23 @@
+{
+  "name": "donair",
+  "version": "1.0.0",
+  "description": "Monorepo for Donair",
+  "main": "index.js",
+  "repository": "git@github.com:callingmybluff/donair.git",
+  "author": "CallingMyBluff <ismaeel.abuabdallah@gmail.com>",
+  "license": "GPL-2.0",
+  "private": false,
+  "scripts": {
+    "start": "nx serve",
+    "build": "nx build",
+    "test": "nx test"
+  },
+  "devDependencies": {
+    "@nrwl/cli": "latest",
+    "@nrwl/nx-cloud": "latest",
+    "@nrwl/tao": "latest",
+    "@nrwl/workspace": "latest",
+    "@nxrocks/nx-flutter": "^3.0.0",
+    "typescript": "4.2.4"
+  }
+}

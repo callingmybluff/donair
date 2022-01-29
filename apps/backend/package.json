@@ -2,7 +2,6 @@
   "name": "backend.oneforall",
   "version": "1.0.0",
   "main": "dist/index.js",
-  "license": "UNLIECENCED",
   "private": true,
   "scripts": {
     "dev": "NODE_ENV=development nodemon",
