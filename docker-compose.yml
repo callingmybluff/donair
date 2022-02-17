@@ -10,21 +10,21 @@ x-common-variables: &common-variables
   MARIADB_DATABASE: backend
 
 services:
-#  backend:
-#    build:
-#      context: backend
-#    ports:
-#      - 3000:3000
-#    environment:
-#      <<: *common-variables
-#      PORT: 4000
-#      DB_PORT: 3306
-#      DB_HOST: mariadb
-#      DB_DIALECT: mariadb
-#    networks:
-#      - docker-network
-#    depends_on: 
-#      - mariadb
+  backend:
+    build:
+      context: apps/backend
+    ports:
+      - 3000:3000
+    environment:
+      <<: *common-variables
+      PORT: 3000
+      DB_PORT: 3306
+      DB_HOST: mariadb
+      DB_DIALECT: mariadb
+    networks:
+      - docker-network
+    depends_on: 
+      - mariadb
 
   mariadb:
     image: mariadb:10.7.1
