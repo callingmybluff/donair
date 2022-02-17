@@ -1,0 +1,17 @@
+{
+  "amount": "500",
+  "apps": [
+      {
+          "app": "a1.b1.c1",
+          "percentage": 11.45
+      },
+      {
+          "app": "a2.b2.c2",
+          "percentage": 50
+      },
+      {
+          "app": "a3.b3.c3",
+          "percentage": 38.55
+      }
+  ]
+}
