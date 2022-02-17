@@ -15,6 +15,6 @@ jobs:
       - name: Build (Run Docker-Compose)
         run: docker-compose up -d
       - uses: cypress-io/github-action@v2
-        working-directory: ./apps/backend
+        working-directory: apps/backend
         with:
           browser: chrome
