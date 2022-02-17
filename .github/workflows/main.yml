@@ -1,0 +1,26 @@
+name: Test Backend
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Starting up
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build (Run Docker-Compose)
+        run: docker-compose up -d
+  test:
+    name: Testing
+    runs-on: ubuntu-latest
+    container:
+      image: cypress/browsers:node12.16.1-chrome80-ff73
+      options: --user 1001
+    steps:
+      - uses: cypress-io/github-action@v2
+        with:
+          browser: firefox
