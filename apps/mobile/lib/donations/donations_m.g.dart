@@ -6,6 +6,51 @@ part of 'donations_m.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+Serializer<DonationsM> _$donationsMSerializer = new _$DonationsMSerializer();
+
+class _$DonationsMSerializer implements StructuredSerializer<DonationsM> {
+  @override
+  final Iterable<Type> types = const [DonationsM, _$DonationsM];
+  @override
+  final String wireName = 'DonationsM';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, DonationsM object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'list',
+      serializers.serialize(object.list,
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(DonationM)])),
+    ];
+
+    return result;
+  }
+
+  @override
+  DonationsM deserialize(Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new DonationsMBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'list':
+          result.list.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(DonationM)]))!
+              as BuiltList<Object?>);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
 class _$DonationsM extends DonationsM {
   @override
   final BuiltList<DonationM> list;

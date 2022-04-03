@@ -2,10 +2,10 @@ import 'package:donair/donation/donation_c.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:donair/sl.dart';
-import 'package:donair/donation/donation_m.dart';
-import 'package:donair/donations/donations_v.dart';
-import 'package:donair/donations/donations_c.dart';
+import 'sl.dart';
+import 'donation/donation_m.dart';
+import 'donations/donations_v.dart';
+import 'donations/donations_c.dart';
 
 class Home extends StatelessWidget {
   Home({Key? key})
@@ -27,9 +27,7 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Your Donations'),
       ),
-      body: DonationsV(
-        donationsController: _donationsC,
-      ),
+      body: DonationsV(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           TextEditingController amountController = TextEditingController();

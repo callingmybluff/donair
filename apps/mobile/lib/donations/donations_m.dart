@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-import 'package:donair/donation/donation_m.dart';
+import '../donation/donation_m.dart';
+import '../utils/serializers.dart';
 
 part 'donations_m.g.dart';
 
@@ -17,4 +21,15 @@ abstract class DonationsM implements Built<DonationsM, DonationsMBuilder> {
       builder..list = ListBuilder();
   factory DonationsM.add(DonationsM model, DonationM newDonation) =>
       model.rebuild((b) => b..list.add(newDonation));
+
+  String toJson() {
+    return json.encode(serializers.serializeWith(DonationsM.serializer, this));
+  }
+
+  static DonationsM fromJson(String jsonString) {
+    return serializers.deserializeWith(
+        DonationsM.serializer, json.decode(jsonString))!;
+  }
+
+  static Serializer<DonationsM> get serializer => _$donationsMSerializer;
 }

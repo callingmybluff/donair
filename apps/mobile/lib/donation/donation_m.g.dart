@@ -6,17 +6,93 @@ part of 'donation_m.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+Serializer<DonationM> _$donationMSerializer = new _$DonationMSerializer();
+
+class _$DonationMSerializer implements StructuredSerializer<DonationM> {
+  @override
+  final Iterable<Type> types = const [DonationM, _$DonationM];
+  @override
+  final String wireName = 'DonationM';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, DonationM object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'amount',
+      serializers.serialize(object.amount, specifiedType: const FullType(int)),
+      'state',
+      serializers.serialize(object.state,
+          specifiedType: const FullType(DonationState)),
+    ];
+    Object? value;
+    value = object.link;
+    if (value != null) {
+      result
+        ..add('link')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.id;
+    if (value != null) {
+      result
+        ..add('id')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  DonationM deserialize(Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new DonationMBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'amount':
+          result.amount = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
+        case 'link':
+          result.link = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'state':
+          result.state = serializers.deserialize(value,
+              specifiedType: const FullType(DonationState)) as DonationState;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
 class _$DonationM extends DonationM {
   @override
   final int amount;
   @override
   final String? link;
+  @override
+  final String? id;
+  @override
+  final DonationState state;
 
   factory _$DonationM([void Function(DonationMBuilder)? updates]) =>
       (new DonationMBuilder()..update(updates)).build();
 
-  _$DonationM._({required this.amount, this.link}) : super._() {
+  _$DonationM._({required this.amount, this.link, this.id, required this.state})
+      : super._() {
     BuiltValueNullFieldError.checkNotNull(amount, 'DonationM', 'amount');
+    BuiltValueNullFieldError.checkNotNull(state, 'DonationM', 'state');
   }
 
   @override
@@ -29,19 +105,27 @@ class _$DonationM extends DonationM {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is DonationM && amount == other.amount && link == other.link;
+    return other is DonationM &&
+        amount == other.amount &&
+        link == other.link &&
+        id == other.id &&
+        state == other.state;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, amount.hashCode), link.hashCode));
+    return $jf($jc(
+        $jc($jc($jc(0, amount.hashCode), link.hashCode), id.hashCode),
+        state.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('DonationM')
           ..add('amount', amount)
-          ..add('link', link))
+          ..add('link', link)
+          ..add('id', id)
+          ..add('state', state))
         .toString();
   }
 }
@@ -57,13 +141,25 @@ class DonationMBuilder implements Builder<DonationM, DonationMBuilder> {
   String? get link => _$this._link;
   set link(String? link) => _$this._link = link;
 
-  DonationMBuilder();
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  DonationState? _state;
+  DonationState? get state => _$this._state;
+  set state(DonationState? state) => _$this._state = state;
+
+  DonationMBuilder() {
+    DonationM._initializeBuilder(this);
+  }
 
   DonationMBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _amount = $v.amount;
       _link = $v.link;
+      _id = $v.id;
+      _state = $v.state;
       _$v = null;
     }
     return this;
@@ -86,7 +182,10 @@ class DonationMBuilder implements Builder<DonationM, DonationMBuilder> {
         new _$DonationM._(
             amount: BuiltValueNullFieldError.checkNotNull(
                 amount, 'DonationM', 'amount'),
-            link: link);
+            link: link,
+            id: id,
+            state: BuiltValueNullFieldError.checkNotNull(
+                state, 'DonationM', 'state'));
     replace(_$result);
     return _$result;
   }

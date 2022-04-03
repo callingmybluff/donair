@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:donair/sl.dart';
-import 'package:donair/home.dart';
+import 'sl.dart';
+import 'home.dart';
 
 void main() {
   ServiceLocator.setup();

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:donair/donation/donation_c.dart';
-import 'package:donair/donation/donation_m.dart';
+import 'donation_c.dart';
+import 'donation_m.dart';
 
 class DonationV extends StatelessWidget {
-  DonationV({
+  const DonationV({
     Key? key,
-    DonationC? controller,
-  })  : donation = controller ?? DonationC(),
+    required DonationC controller,
+  })  : donation = controller,
         super(key: key);
 
   final DonationC donation;

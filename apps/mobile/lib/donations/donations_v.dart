@@ -1,16 +1,16 @@
 import 'package:donair/donation/donation_c.dart';
+import 'package:donair/sl.dart';
 import 'package:flutter/material.dart';
 
-import 'package:donair/donation/donation_v.dart';
-import 'package:donair/donations/donations_m.dart';
-import 'package:donair/donations/donations_c.dart';
+import '../donation/donation_v.dart';
+import 'donations_m.dart';
+import 'donations_c.dart';
 
 class DonationsV extends StatelessWidget {
-  const DonationsV({
+  DonationsV({
     Key? key,
-    required this.donationsController,
   }) : super(key: key);
-  final DonationsC donationsController;
+  final DonationsC donationsController = ServiceLocator.instance<DonationsC>();
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,6 @@ class DonationsV extends StatelessWidget {
               ),
             );
           } else {
-            print(model);
             return ListView.builder(
               key: const Key('builder'),
               itemBuilder: (BuildContext context, int index) {
