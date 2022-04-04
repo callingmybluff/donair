@@ -14,12 +14,14 @@ services:
     build:
       context: apps/backend
       args:
-        API_KEY: 783deb90-896c-43f8-ad12-89ee7f5d8e97
+        API_KEY: ${API_KEY}
         DB_USERNAME: ${DB_USERNAME}
         DB_PASSWORD: ${DB_PASSWORD}
         DB_PORT: ${DB_PORT}
         DB_HOST: mariadb
         DB_DIALECT: ${DB_DIALECT}
+        STRIPE_PUBKEY: ${STRIPE_PUBKEY}
+        STRIPE_SECRET: ${STRIPE_SECRET}
     ports:
       - 3000:3000
     environment:
