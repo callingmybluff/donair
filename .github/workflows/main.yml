@@ -57,7 +57,7 @@ jobs:
             echo "Removing existing repo"
             rm -rf app
             echo "Cloning current code"
-            git clone -b monorepo https://github.com/callingmybluff/donair app
+            git clone -b actions https://github.com/callingmybluff/donair app
             echo "Starting up :)"
             sudo docker-compose -f app/docker-compose.yml up -d
             echo "We are live again!"
