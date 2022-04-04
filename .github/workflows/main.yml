@@ -48,6 +48,7 @@ jobs:
           key: ${{ secrets.SERVER_PRIVATE_KEY }}
           port: ${{ secrets.SERVER_PORT }}
           envs: API_KEY,DB_DIALECT,DB_HOST,DB_NAME,DB_PASSWORD,DB_PORT,DB_USERNAME
+          command_timeout: 30m
           script: |
             echo "Stopping Docker :("
             sudo docker-compose -f app/docker-compose.yml down
