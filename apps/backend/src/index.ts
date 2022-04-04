@@ -27,7 +27,7 @@ async function appInitialize() {
     await DB.connect()
   }
   catch(e) {
-    Logger.debug(e)
+    Logger.warn(e)
     Logger.error('Error connecting to DB')
     process.exit(1)
   }

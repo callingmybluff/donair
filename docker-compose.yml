@@ -13,6 +13,13 @@ services:
   backend:
     build:
       context: apps/backend
+      args:
+        API_KEY: ${API_KEY}
+        DB_USERNAME: ${DB_USERNAME}
+        DB_PASSWORD: ${DB_PASSWORD}
+        DB_PORT: ${DB_PORT}
+        DB_HOST: ${DB_HOST}
+        DB_DIALECT: ${DB_DIALECT}
     ports:
       - 3000:3000
     environment:
@@ -21,6 +28,7 @@ services:
       DB_PORT: 3306
       DB_HOST: mariadb
       DB_DIALECT: mariadb
+    restart: always
     networks:
       - docker-network
     depends_on: 
@@ -34,6 +42,7 @@ services:
     environment:
       <<: *common-variables
       MARIADB_DATABASE: backend
+    restart: always
     networks:
       - docker-network
     volumes:
