@@ -11,8 +11,6 @@ x-common-variables: &common-variables
 
 services:
   backend:
-    environment:
-      - DONAIR_API_KEY=${DONAIR_API_KEY}
     build:
       context: apps/backend
       args:
@@ -32,6 +30,7 @@ services:
       DB_PORT: 3306
       DB_HOST: mariadb
       DB_DIALECT: mariadb
+      DONAIR_API_KEY: ${DONAIR_API_KEY}
     restart: always
     networks:
       - docker-network
