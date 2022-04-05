@@ -14,7 +14,7 @@ services:
     build:
       context: apps/backend
       args:
-        THE_API_KEY: ${THE_API_KEY}
+        DONAIR_API_KEY: ${DONAIR_API_KEY}
         DB_USERNAME: ${DB_USERNAME}
         DB_PASSWORD: ${DB_PASSWORD}
         DB_PORT: ${DB_PORT}

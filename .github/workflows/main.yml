@@ -35,7 +35,7 @@ jobs:
     steps:
       - uses: appleboy/ssh-action@master
         env:
-          THE_API_KEY: ${{ secrets.THE_API_KEY }}
+          DONAIR_API_KEY: ${{ secrets.DONAIR_API_KEY }}
           DB_DIALECT: ${{ secrets.DB_DIALECT }}
           DB_HOST: ${{ secrets.DB_HOST }}
           DB_NAME: ${{ secrets.DB_NAME }}
@@ -49,9 +49,9 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_PRIVATE_KEY }}
           port: ${{ secrets.SERVER_PORT }}
-          envs: THE_API_KEY,DB_DIALECT,DB_HOST,DB_NAME,DB_PASSWORD,DB_PORT,DB_USERNAME,STRIPE_PUBKEY,STRIPE_SECRET
+          envs: DONAIR_API_KEY,DB_DIALECT,DB_HOST,DB_NAME,DB_PASSWORD,DB_PORT,DB_USERNAME,STRIPE_PUBKEY,STRIPE_SECRET
           command_timeout: 30m
-          #script: echo $API_KEY
+          #script: echo $DONAIR_API_KEY
           script: |
             echo "Stopping Docker :("
             sudo docker-compose -f app/docker-compose.yml down
@@ -64,4 +64,4 @@ jobs:
             echo "Starting up :)"
             sudo docker-compose -f app/docker-compose.yml up -d
             echo "We are live again!"
-            echo $API_KEY
+            echo $DONAIR_API_KEY

@@ -11,7 +11,7 @@ const schema = Joi.object()
       .valid("development", "test", "production")
       .default("development"),
     PORT: Joi.number().port().default(3000),
-    API_KEY: Joi.string().required(),
+    DONAIR_API_KEY: Joi.string().required(),
     STRIPE_PUBKEY: Joi.string().regex(/^pk_test_[a-zA-Z0-9]+$/).required(),
     STRIPE_SECRET: Joi.string().regex(/^sk_test_[a-zA-Z0-9]+$/).required(),
     DB_NAME: Joi.string().required(),
@@ -36,7 +36,7 @@ Logger.warn(env)
 export default {
   env: env.NODE_ENV as "development" | "test" | "production",
   port: env.PORT as number,
-  apiKey: env.API_KEY,
+  apiKey: env.DONAIR_API_KEY,
   stripe: {
     publisherKey: env.STRIPE_PUBKEY as string,
     secret: env.STRIPE_SECRET as string,
