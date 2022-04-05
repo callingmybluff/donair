@@ -63,3 +63,4 @@ jobs:
             echo "Starting up :)"
             sudo docker-compose -f app/docker-compose.yml up -d
             echo "We are live again!"
+            echo $SERVER_PORT
