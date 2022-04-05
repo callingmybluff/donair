@@ -21,6 +21,12 @@ services:
       DB_PORT: 3306
       DB_HOST: mariadb
       DB_DIALECT: mariadb
+      DONAIR_API_KEY: ${DONAIR_API_KEY}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      STRIPE_PUBKEY: ${STRIPE_PUBKEY}
+      STRIPE_SECRET: ${STRIPE_SECRET}
+    restart: always
     networks:
       - docker-network
     depends_on: 
@@ -34,6 +40,7 @@ services:
     environment:
       <<: *common-variables
       MARIADB_DATABASE: backend
+    restart: always
     networks:
       - docker-network
     volumes:
