@@ -10,11 +10,6 @@ x-common-variables: &common-variables
   MARIADB_DATABASE: backend
 
 services:
-  bla:
-    build:
-      context: apps/test
-      args:
-        API_KEY: blaaaa
   backend:
     build:
       context: apps/backend
