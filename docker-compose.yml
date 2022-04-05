@@ -13,15 +13,6 @@ services:
   backend:
     build:
       context: apps/backend
-      args:
-        DONAIR_API_KEY: ${DONAIR_API_KEY}
-        DB_USERNAME: ${DB_USERNAME}
-        DB_PASSWORD: ${DB_PASSWORD}
-        DB_PORT: ${DB_PORT}
-        DB_HOST: mariadb
-        DB_DIALECT: ${DB_DIALECT}
-        STRIPE_PUBKEY: ${STRIPE_PUBKEY}
-        STRIPE_SECRET: ${STRIPE_SECRET}
     ports:
       - 3000:3000
     environment:
@@ -31,6 +22,10 @@ services:
       DB_HOST: mariadb
       DB_DIALECT: mariadb
       DONAIR_API_KEY: ${DONAIR_API_KEY}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      STRIPE_PUBKEY: ${STRIPE_PUBKEY}
+      STRIPE_SECRET: ${STRIPE_SECRET}
     restart: always
     networks:
       - docker-network
