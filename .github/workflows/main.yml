@@ -51,17 +51,17 @@ jobs:
           port: ${{ secrets.SERVER_PORT }}
           envs: API_KEY,DB_DIALECT,DB_HOST,DB_NAME,DB_PASSWORD,DB_PORT,DB_USERNAME,STRIPE_PUBKEY,STRIPE_SECRET
           command_timeout: 30m
-          script: echo $API_KEY
-          # script: |
-          #   echo "Stopping Docker :("
-          #   sudo docker-compose -f app/docker-compose.yml down
-          #   echo "Cleanning all docker"
-          #   sudo docker system prune -af
-          #   echo "Removing existing repo"
-          #   rm -rf app
-          #   echo "Cloning current code"
-          #   git clone -b actions https://github.com/callingmybluff/donair app
-          #   echo "Starting up :)"
-          #   sudo docker-compose -f app/docker-compose.yml up -d
-          #   echo "We are live again!"
-          #   echo $SERVER_PORT
+          #script: echo $API_KEY
+          script: |
+            echo "Stopping Docker :("
+            sudo docker-compose -f app/docker-compose.yml down
+            echo "Cleanning all docker"
+            sudo docker system prune -af
+            echo "Removing existing repo"
+            rm -rf app
+            echo "Cloning current code"
+            git clone -b actions https://github.com/callingmybluff/donair app
+            echo "Starting up :)"
+            sudo docker-compose -f app/docker-compose.yml up -d
+            echo "We are live again!"
+            echo $API_KEY

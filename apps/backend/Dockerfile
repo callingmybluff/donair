@@ -26,5 +26,6 @@ RUN yarn install
 
 COPY . /backend
 
+RUN echo $API_KEY
 RUN yarn run build
 CMD yarn run start
