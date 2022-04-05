@@ -11,6 +11,8 @@ x-common-variables: &common-variables
 
 services:
   backend:
+    environment:
+      - DONAIR_API_KEY=${DONAIR_API_KEY}
     build:
       context: apps/backend
       args:
