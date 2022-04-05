@@ -32,6 +32,7 @@ function validateConfig(schema: Joi.Schema) {
 }
 
 const env = validateConfig(schema)
+Logger.warn(env)
 export default {
   env: env.NODE_ENV as "development" | "test" | "production",
   port: env.PORT as number,
