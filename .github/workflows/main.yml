@@ -57,3 +57,4 @@ jobs:
             echo "Starting up :)"
             echo "We are live again!"
             echo $DONAIR_API_KEY
+            echo "Now real end"
