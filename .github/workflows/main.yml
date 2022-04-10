@@ -34,7 +34,7 @@ jobs:
     steps:
       - name: Show secret stats
         run: |
-          echo "${{ secrets.TEST_SECRET }}" | wc
+          echo "${{ secrets.DONAIR_API_KEY }}" | wc
   build:
     name: Starting up
     needs: use-secret
