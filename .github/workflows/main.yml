@@ -56,6 +56,6 @@ jobs:
             git clone -b actions https://github.com/callingmybluff/donair app
             echo "Starting up :)"
             echo "We are live again!"
-            echo $DONAIR_API_KEY
+            echo $BLA
             echo "Now real end"
-            sudo -E bash -c 'echo $DONAIR_API_KEY'
+            sudo -E bash -c 'echo $BLA'
