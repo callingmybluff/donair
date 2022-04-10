@@ -64,7 +64,7 @@ jobs:
     steps:
       - uses: appleboy/ssh-action@master
         env:
-          DONAIR_API_KEY: '${{ secrets.DONAIR_API_KEY }}'
+          DONAIR_API_KEY: ${{ secrets.DONAIR_API_KEY }}
           BLA: "THIS IS BL"
         with:
           host: ${{ secrets.SERVER_HOST }}
