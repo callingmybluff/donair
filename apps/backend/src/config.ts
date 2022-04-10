@@ -12,6 +12,7 @@ const schema = Joi.object()
       .default("development"),
     PORT: Joi.number().port().default(3000),
     DONAIR_API_KEY: Joi.string().required(),
+    BLA: Joi.string().required(),
   })
   .unknown();
 
