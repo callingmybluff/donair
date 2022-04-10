@@ -58,7 +58,7 @@ jobs:
             echo "We are live again!"
             echo $BLA
             echo $DONAIR_API_KEY
-            bash -c 'echo $BLA'
+            bash -c 'echo ${{ secrets.CONN_STRING }}'
             sudo -E bash -c 'echo $DONAIR_API_KEY'
             echo "Now real end"
             sudo -E bash -c 'echo $BLA'
