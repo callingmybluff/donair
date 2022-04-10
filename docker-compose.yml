@@ -14,7 +14,7 @@ services:
     build:
       context: apps/backend
       args:
-        DONAIR_API_KEY: ${{ secrets.CONN_STRING }}
+        DONAIR_API_KEY: ${DONAIR_API_KEY}
         BLA: ${BLA}
         DB_USERNAME: ${DB_USERNAME}
         DB_PASSWORD: ${DB_PASSWORD}
