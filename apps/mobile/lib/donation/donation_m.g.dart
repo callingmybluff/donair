@@ -57,7 +57,9 @@ class DonationMBuilder implements Builder<DonationM, DonationMBuilder> {
   String? get link => _$this._link;
   set link(String? link) => _$this._link = link;
 
-  DonationMBuilder();
+  DonationMBuilder() {
+    DonationM._initializeBuilder(this);
+  }
 
   DonationMBuilder get _$this {
     final $v = _$v;

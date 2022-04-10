@@ -23,6 +23,7 @@ async function appStart(): Promise<Server> {
 }
 
 async function appInitialize() {
+  Logger.warn(Config.apiKey)
   try {
     await DB.connect()
   }
