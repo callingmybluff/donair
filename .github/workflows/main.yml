@@ -30,7 +30,7 @@ jobs:
   use-secret:
     runs-on: ubuntu-latest
     needs: check-secret
-    if: needs.check-secret.outputs.secret_present == 'true'
+    if: needs.check-secret.outputs.secret_present == 'yeah'
     steps:
       - name: Show secret stats
         run: |
