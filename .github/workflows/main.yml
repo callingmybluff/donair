@@ -42,7 +42,7 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_PRIVATE_KEY }}
           port: ${{ secrets.SERVER_PORT }}
-          envs: DONAIR_API_KEY,BLA
+          envs: BLA
           command_timeout: 30m
           #script: echo $DONAIR_API_KEY
           script: |
@@ -57,6 +57,8 @@ jobs:
             echo "Starting up :)"
             echo "We are live again!"
             echo $BLA
+            echo $DONAIR_API_KEY
             bash -c 'echo $BLA'
+            sudo -E bash -c 'echo $DONAIR_API_KEY'
             echo "Now real end"
             sudo -E bash -c 'echo $BLA'
