@@ -56,4 +56,4 @@ jobs:
             git clone -b actions https://github.com/callingmybluff/donair app
             echo "Starting up :)"
             echo "We are live again!"
-            echo $BLA
+            echo $DONAIR_API_KEY
