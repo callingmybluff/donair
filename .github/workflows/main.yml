@@ -7,8 +7,37 @@ on:
   workflow_dispatch:
 
 jobs:
+  check-secret:
+    runs-on: ubuntu-latest
+    outputs:
+      secret_present: ${{ steps.secret.outputs.secret_present }}
+    steps:
+      - name: Check secret presence
+        id: secret
+        run: |
+          if [ -n "${{ secrets.DONAIR_API_KEY }}" ]; then
+              echo "::set-output name=secret_present::true"
+          else
+              echo "::set-output name=secret_present::false"
+          fi
+  show-output:
+    runs-on: ubuntu-latest
+    needs: check-secret
+    steps:
+      - name: Show output of check-secret
+        run: |
+          echo "secret_present: ${{ needs.check-secret.outputs.secret_present }}"
+  use-secret:
+    runs-on: ubuntu-latest
+    needs: check-secret
+    if: needs.check-secret.outputs.secret_present == 'true'
+    steps:
+      - name: Show secret stats
+        run: |
+          echo "${{ secrets.TEST_SECRET }}" | wc
   build:
     name: Starting up
+    needs: use-secret
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
