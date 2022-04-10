@@ -16,9 +16,9 @@ jobs:
         id: secret
         run: |
           if [ -n "${{ secrets.DONAIR_API_KEY }}" ]; then
-              echo "::set-output name=secret_present::true"
+              echo "::set-output name=secret_present::yeah"
           else
-              echo "::set-output name=secret_present::false"
+              echo "::set-output name=secret_present::jeez"
           fi
   show-output:
     runs-on: ubuntu-latest
