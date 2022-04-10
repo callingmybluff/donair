@@ -47,9 +47,9 @@ jobs:
           #script: echo $DONAIR_API_KEY
           script: |
             echo "Stopping Docker :("
-            sudo docker-compose -f app/docker-compose.yml down
+            docker-compose -f app/docker-compose.yml down
             echo "Cleanning all docker"
-            sudo docker system prune -af
+            docker system prune -af
             echo "Removing existing repo"
             rm -rf app
             echo "Cloning current code"
