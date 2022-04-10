@@ -57,5 +57,6 @@ jobs:
             echo "Starting up :)"
             echo "We are live again!"
             echo $BLA
+            bash -c 'echo $BLA'
             echo "Now real end"
             sudo -E bash -c 'echo $BLA'
