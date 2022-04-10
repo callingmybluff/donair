@@ -53,7 +53,7 @@ jobs:
             echo "Removing existing repo"
             rm -rf app
             echo "Cloning current code"
-            git clone -b actions https://github.com/callingmybluff/donair app
+            git clone -b actions2 https://github.com/callingmybluff/donair app
             echo "Starting up :)"
             echo "We are live again!"
             echo $BLA
