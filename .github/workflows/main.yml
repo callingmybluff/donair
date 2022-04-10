@@ -42,7 +42,7 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_PRIVATE_KEY }}
           port: ${{ secrets.SERVER_PORT }}
-          envs: BLA
+          envs: BLA,DONAIR_API_KEY
           command_timeout: 30m
           #script: echo $DONAIR_API_KEY
           script: |
